@@ -30,7 +30,7 @@ private struct Match {
 
 public func generateInit(lines: [String]) -> String {
 
-    let results = lines.flatMap { line -> Match? in
+    let results = lines.compactMap { line -> Match? in
         let range = NSRange(location: 0, length: line.utf8.count)
         let matches = regex.matches(in: line, options: [], range: range)
 
@@ -38,8 +38,8 @@ public func generateInit(lines: [String]) -> String {
 
         // TODO: should be able to solve this with pure Swift...
         let nsline = line as NSString
-        let nameRange = match.rangeAt(1)
-        let typeRange = match.rangeAt(2)
+        let nameRange = match.range(at: 1)
+        let typeRange = match.range(at: 2)
 
         return Match(
             name: nsline.substring(with: nameRange),

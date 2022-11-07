@@ -16,7 +16,7 @@ class ViewController: NSViewController {
     @IBOutlet var outputTextView: NSTextView!
 
     @IBAction func generate(_ sender: AnyObject) {
-        guard let lines = inputTextView.string else { return }
+        let lines = inputTextView.string
 
         let initializer = generateInit(lines: lines.components(separatedBy: "\n"))
 
